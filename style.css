@@ -253,3 +253,45 @@ nav a:hover {
   margin-bottom: 10px;
 }
 
+/* HERO SECTION CENTER */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+}
+
+/* PROFILE IMAGE */
+.pfp {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #00bfff;
+  box-shadow: 0 0 30px rgba(0, 191, 255, 0.4);
+}
+
+/* BUTTONS */
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  padding: 10px 22px;
+  border-radius: 30px;
+  background: #00bfff;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.btn.outline {
+  background: transparent;
+  border: 2px solid #00bfff;
+  color: #00bfff;
+}
+
