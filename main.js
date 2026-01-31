@@ -26,14 +26,15 @@ document.addEventListener("DOMContentLoaded", function () {
   filterButtons.forEach(button => {
     button.addEventListener("click", () => {
 
-      // active class remove
       filterButtons.forEach(btn => btn.classList.remove("active"));
       button.classList.add("active");
 
       const filterValue = button.getAttribute("data-filter");
 
       projects.forEach(project => {
-        if (filterValue === "all" || project.classList.contains(filterValue)) {
+        const category = project.getAttribute("data-category");
+
+        if (filterValue === "all" || category === filterValue) {
           project.style.display = "block";
         } else {
           project.style.display = "none";
