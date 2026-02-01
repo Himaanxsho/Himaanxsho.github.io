@@ -46,11 +46,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-<script>
-  const hamburger = document.getElementById("hamburger");
-  const sidebar = document.getElementById("sidebar");
-  const overlay = document.getElementById("overlay");
+// ===== HAMBURGER MENU =====
+const hamburger = document.getElementById("hamburger");
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
 
+if (hamburger && sidebar && overlay) {
   hamburger.addEventListener("click", () => {
     hamburger.classList.toggle("active");
     sidebar.classList.toggle("active");
@@ -62,4 +63,4 @@ document.addEventListener("DOMContentLoaded", function () {
     sidebar.classList.remove("active");
     overlay.classList.remove("active");
   });
-</script>
+}
