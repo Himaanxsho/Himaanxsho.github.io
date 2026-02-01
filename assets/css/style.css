@@ -72,36 +72,6 @@ nav a:hover {
   margin-bottom: 35px;
 }
 
-/* BUTTONS */
-.hero-buttons .btn {
-  padding: 12px 28px;
-  border-radius: 30px;
-  text-decoration: none;
-  margin-right: 15px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.btn.primary {
-  background: #38bdf8;
-  color: #020617;
-}
-
-.btn.primary:hover {
-  background: #0ea5e9;
-}
-
-.btn.secondary {
-  border: 1px solid #38bdf8;
-  color: #38bdf8;
-}
-
-.btn.secondary:hover {
-  background: #38bdf8;
-  color: #020617;
-}
-
-
 
 /* ABOUT PAGE */
 .about-section {
@@ -274,24 +244,51 @@ nav a:hover {
   box-shadow: 0 0 30px rgba(0, 191, 255, 0.4);
 }
 
-/* BUTTONS */
+/* =====================================================
+   HERO SECTION BUTTONS
+   Used for: View Work, Contact Me, About Me
+   ===================================================== */
+
 .hero-buttons {
   display: flex;
-  gap: 15px;
+  gap: 18px;
+  margin-top: 25px;
+  justify-content: center;
+  flex-wrap: wrap; /* mobile friendly */
 }
 
+/* COMMON BUTTON STYLE */
 .btn {
-  padding: 10px 22px;
+  padding: 12px 30px;
   border-radius: 30px;
-  background: #00bfff;
-  color: #fff;
+  font-weight: 600;
   text-decoration: none;
-  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.btn.outline {
-  background: transparent;
-  border: 2px solid #00bfff;
-  color: #00bfff;
+/* PRIMARY BUTTON (View Work) */
+.btn.primary {
+  background: #38bdf8;
+  color: #020617;
 }
+
+.btn.primary:hover {
+  background: #0ea5e9;
+  transform: translateY(-2px);
+}
+
+/* SECONDARY BUTTON (Contact Me, About Me) */
+.btn.secondary {
+  background: transparent;
+  border: 2px solid #38bdf8;
+  color: #38bdf8;
+}
+
+.btn.secondary:hover {
+  background: #38bdf8;
+  color: #020617;
+  transform: translateY(-2px);
+}
+
 
