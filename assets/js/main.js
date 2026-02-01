@@ -51,16 +51,16 @@ const hamburger = document.getElementById("hamburger");
 const sidebar = document.getElementById("sidebar");
 const overlay = document.getElementById("overlay");
 
-if (hamburger && sidebar && overlay) {
-  hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("active");
-    sidebar.classList.toggle("active");
-    overlay.classList.toggle("active");
-  });
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("active");
+  sidebar.classList.toggle("active");
+  overlay.classList.toggle("active");
+  document.body.classList.toggle("no-scroll");
+});
 
-  overlay.addEventListener("click", () => {
-    hamburger.classList.remove("active");
-    sidebar.classList.remove("active");
-    overlay.classList.remove("active");
-  });
-}
+overlay.addEventListener("click", () => {
+  hamburger.classList.remove("active");
+  sidebar.classList.remove("active");
+  overlay.classList.remove("active");
+  document.body.classList.remove("no-scroll");
+});
