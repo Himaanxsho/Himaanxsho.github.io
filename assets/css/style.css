@@ -425,48 +425,56 @@ nav a.active {
   z-index: 1000;
 }
 
-/* HAMBURGER */
 .hamburger {
-  width: 28px;
-  height: 22px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  width: 30px;
   cursor: pointer;
+  z-index: 1100;
 }
 
 .hamburger span {
+  display: block;
   height: 3px;
   width: 100%;
-  background: #3cc3ff;
-  border-radius: 10px;
+  background: #38bdf8;
+  margin: 6px 0;
   transition: 0.4s;
 }
 
-/* HAMBURGER TO CROSS */
+/* CROSS */
 .hamburger.active span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 6px);
 }
+
 .hamburger.active span:nth-child(2) {
   opacity: 0;
 }
+
 .hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -6px);
+  transform: rotate(-45deg) translate(6px, -6px);
 }
 
 /* SIDEBAR */
 .sidebar {
   position: fixed;
   top: 0;
-  right: -260px;
+  right: -260px;   /* pehle screen ke bahar */
   width: 260px;
-  height: 100%;
-  background: #050b18;
+  height: 100vh;
+  background: #0b1220;
+  z-index: 1000;
+
   display: flex;
   flex-direction: column;
-  padding-top: 80px;
-  transition: 0.4s ease;
-  z-index: 999;
+  justify-content: center;
+  gap: 30px;
+  padding-left: 40px;
+
+  transition: right 0.4s ease;
+}
+
+/* OPEN STATE */
+.sidebar.active {
+  right: 0;
 }
 
 .sidebar a {
@@ -504,6 +512,15 @@ nav a.active {
 .overlay.active {
   opacity: 1;
   pointer-events: all;
+}
+
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body.no-scroll {
+  overflow: hidden;
 }
 
 
