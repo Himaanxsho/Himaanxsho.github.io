@@ -428,7 +428,7 @@ nav a.active {
 .hamburger {
   width: 30px;
   cursor: pointer;
-  z-index: 1100;
+  z-index: 1001;
 }
 
 .hamburger span {
@@ -506,7 +506,7 @@ nav a.active {
   opacity: 0;
   pointer-events: none;
   transition: 0.3s;
-  z-index: 998;
+  z-index: 999;
 }
 
 .overlay.active {
@@ -522,6 +522,7 @@ nav a.active {
 body.no-scroll {
   overflow: hidden;
 }
+
 
 
 
