@@ -22,11 +22,12 @@
 
 <!-- Sidebar -->
 <nav class="sidebar" id="sidebar">
-    <a href="/home/login.html" class="nav-link">Login</a>
-  <a href="/home/">Home</a>
-  <a href="/home/about/">About</a>
-  <a href="/home/projects/">Projects</a>
-  <a href="/home/contact/">Contact</a>
+    <a href="/home/login">Login</a>
+
+<a href="#" onclick="goHome()">Home</a>
+<a href="#" onclick="protectedRoute('/home/about')">About</a>
+<a href="#" onclick="protectedRoute('/home/projects')">Projects</a>
+<a href="#" onclick="protectedRoute('/home/contact')">Contact</a>
 </nav>
 
 <!-- Overlay -->
@@ -45,9 +46,9 @@
     </p>
 
     <div class="hero-buttons">
-      <a href="/home/projects/" class="btn">View Work</a>
-      <a href="/home/contact/" class="btn">Contact Me</a>
-      <a href="/home/about/" class="btn">About Me</a>
+     <a href="#" class="btn" onclick="protectedRoute('/home/projects')">View Work</a>
+     <a href="#" class="btn" onclick="protectedRoute('/home/contact')">Contact Me</a>
+     <a href="#" class="btn" onclick="protectedRoute('/home/about')">About Me</a>
     </div>
   </div>
 </section>
@@ -57,6 +58,7 @@
 </body>
 
 </html>
+
 
 
 
