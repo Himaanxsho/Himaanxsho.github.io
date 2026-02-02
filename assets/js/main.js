@@ -64,3 +64,20 @@ overlay.addEventListener("click", () => {
   overlay.classList.remove("active");
   document.body.classList.remove("no-scroll");
 });
+
+function isLoggedIn() {
+  return localStorage.getItem("loggedIn") === "true";
+}
+
+function protectedRoute(path) {
+  if (!isLoggedIn()) {
+    window.location.href = "/home/login";
+  } else {
+    window.location.href = path;
+  }
+}
+
+function goHome() {
+  window.location.href = "/home/";
+}
+
