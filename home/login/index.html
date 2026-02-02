@@ -2,14 +2,28 @@
 <html>
 <head>
   <title>Login</title>
+  <link rel="stylesheet" href="/assets/css/login.css">
 </head>
 <body>
 
-<h2>Sign in</h2>
+<div class="auth-container">
+  <div class="auth-box">
+    <h2>Sign in</h2>
 
-<button id="googleLogin">Sign in with Google</button>
-<button id="logout" style="display:none;">Logout</button>
+    <button id="googleLogin" class="auth-btn">
+      Sign in with Google
+    </button>
 
+    <button id="facebookLogin" class="auth-btn">
+      Sign in with Facebook
+    </button>
+
+    <button id="logout" class="auth-btn logout-btn" style="display:none;">
+      Logout
+    </button>
+  </div>
+</div>
+  
 <script type="module" src="/assets/js/auth.js"></script>
 </body>
 </html>
