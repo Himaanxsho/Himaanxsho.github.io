@@ -22,34 +22,75 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
-
 // Buttons
-const loginBtn = document.getElementById("googleLogin");
-const logoutBtn = document.getElementById("logout");
+const googleBtn = document.getElementById("googleLogin");
+const fbBtn = document.getElementById("facebookLogin");
+const logoutBtn = document.getElementById("logoutBtn");
 
-// Login
-loginBtn.addEventListener("click", () => {
-  signInWithPopup(auth, provider)
-    .then(() => {
-      window.location.href = "/home/";
-    })
-    .catch(err => alert(err.message));
-});
+// Sidebar login button
+const sidebarLoginBtn = document.getElementById("sidebarLoginBtn"); // assume sidebar m login ka button id ye hai
 
-// Logout
-logoutBtn.addEventListener("click", () => {
-  signOut(auth).then(() => {
-    location.reload();
-  });
-});
+// Check login state on page load
+function checkLoginState() {
+  const isLoggedIn = localStorage.getItem("loggedIn") === "true";
 
-// Auth state
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    loginBtn.style.display = "none";
-    logoutBtn.style.display = "block";
-  } else {
-    loginBtn.style.display = "block";
-    logoutBtn.style.display = "none";
+  // Login page par buttons show/hide
+  if (googleBtn && fbBtn) {
+    if (isLoggedIn) {
+      googleBtn.style.display = "none";
+      fbBtn.style.display = "none";
+      if (logoutBtn) logoutBtn.style.display = "block";
+    } else {
+      googleBtn.style.display = "inline-block";
+      fbBtn.style.display = "inline-block";
+      if (logoutBtn) logoutBtn.style.display = "none";
+    }
   }
-});
+
+  // Sidebar button handling
+  if (sidebarLoginBtn) {
+    sidebarLoginBtn.style.display = isLoggedIn ? "none" : "block";
+  }
+
+  // Logout button in sidebar (if exists)
+  const sidebarLogoutBtn = document.getElementById("sidebarLogoutBtn");
+  if (sidebarLogoutBtn) {
+    sidebarLogoutBtn.style.display = isLoggedIn ? "block" : "none";
+  }
+}
+
+// Redirect to login if not logged in (except on login page)
+function protectPage() {
+  const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+  if (!isLoggedIn && !window.location.pathname.includes("/login/")) {
+    window.location.href = "/home/login/";
+  }
+}
+
+// Event listeners
+if (googleBtn) {
+  googleBtn.onclick = () => {
+    localStorage.setItem("loggedIn", "true");
+    window.location.href = "/home/";
+  };
+}
+
+if (fbBtn) {
+  fbBtn.onclick = () => {
+    localStorage.setItem("loggedIn", "true");
+    window.location.href = "/home/";
+  };
+}
+
+if (logoutBtn) {
+  logoutBtn.onclick = () => {
+    localStorage.removeItem("loggedIn");
+    window.location.href = "/home/login/";
+  };
+}
+
+// Run on page load
+checkLoginState();
+protectPage();
+
+
