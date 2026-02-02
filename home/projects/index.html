@@ -53,11 +53,16 @@
 
   </div>
 </section>
-
+<script>
+  if (localStorage.getItem("loggedIn") !== "true") {
+    window.location.href = "/home/login";
+  }
+</script>
 <script src="/assets/js/main.js"></script>
 </body>
 
 </html>
+
 
 
 
