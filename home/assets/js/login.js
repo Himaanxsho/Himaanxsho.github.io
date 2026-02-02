@@ -61,6 +61,13 @@ onAuthStateChanged(auth, (user) => {
     window.location.href = "/home/login.html";
   }
 });
-
+function loginUser() {
+  localStorage.setItem("loggedIn", "true");
+  window.location.href = "/home/";
+}
+function logoutUser() {
+  localStorage.removeItem("loggedIn");
+  window.location.href = "/home/login";
+}
 
 
