@@ -424,76 +424,67 @@ nav a.active {
   background: #050b18;
   z-index: 1000;
 }
-
 .hamburger {
+  position: fixed;
+  top: 25px;
+  right: 30px;
   width: 30px;
+  height: 22px;
   cursor: pointer;
-  z-index: 1001;
+  z-index: 1001; /* sidebar se bhi upar */
 }
 
 .hamburger span {
   display: block;
   height: 3px;
-  width: 100%;
   background: #38bdf8;
-  margin: 6px 0;
+  margin: 5px 0;
   transition: 0.4s;
 }
 
-/* CROSS */
+/* Cross animation */
 .hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 6px);
+  transform: rotate(45deg) translate(5px, 5px);
 }
-
 .hamburger.active span:nth-child(2) {
   opacity: 0;
 }
-
 .hamburger.active span:nth-child(3) {
   transform: rotate(-45deg) translate(6px, -6px);
 }
+
 
 /* SIDEBAR */
 .sidebar {
   position: fixed;
   top: 0;
-  right: -260px;   /* pehle screen ke bahar */
-  width: 260px;
+  right: -280px;
+  width: 280px;
   height: 100vh;
-  background: #0b1220;
-  z-index: 1000;
-
+  background: #0b0f19;
+  box-shadow: -10px 0 40px rgba(0,0,0,0.6);
+  padding: 100px 30px 30px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 30px;
-  padding-left: 40px;
-
+  gap: 20px;
   transition: right 0.4s ease;
+  z-index: 999; /* sidebar */
 }
 
-/* OPEN STATE */
 .sidebar.active {
   right: 0;
 }
 
 .sidebar a {
-  padding: 18px 30px;
-  font-size: 18px;
-  color: #fff;
+  color: #cbd5f5;
   text-decoration: none;
-  transition: 0.3s;
+  font-size: 1.1rem;
 }
 
 .sidebar a:hover {
-  background: rgba(60,195,255,0.1);
-  color: #3cc3ff;
+  color: #38bdf8;
 }
 
-/* SIDEBAR ACTIVE */
-.sidebar.active {
-  right: 0;
-}
 
 /* OVERLAY */
 .overlay {
@@ -506,7 +497,7 @@ nav a.active {
   opacity: 0;
   pointer-events: none;
   transition: 0.3s;
-  z-index: 999;
+  z-index: 998;
 }
 
 .overlay.active {
@@ -526,3 +517,5 @@ body.no-scroll {
 
 
 
+
+              
