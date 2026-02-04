@@ -8,89 +8,83 @@ import {
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-// Firebase config (apna paste kar)
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyDvDqkoTDiepCet8cslpniHVMf4LPde-Wo",
   authDomain: "himaanxsho-login.firebaseapp.com",
   projectId: "himaanxsho-login",
-  storageBucket: "himaanxsho-login.firebasestorage.app",
+  storageBucket: "himaanxsho-login.appspot.com",
   messagingSenderId: "383555026128",
-  appId: "1:383555026128:web:b200eb2f661c3fcb6872d5",
-  measurementId: "G-HB9XEM1R8J"
+  appId: "1:383555026128:web:b200eb2f661c3fcb6872d5"
 };
+
 // Init
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
-// Buttons
+
+// Elements
 const googleBtn = document.getElementById("googleLogin");
 const fbBtn = document.getElementById("facebookLogin");
 const logoutBtn = document.getElementById("logoutBtn");
+const sidebarLoginBtn = document.getElementById("sidebarLoginBtn");
+const sidebarLogoutBtn = document.getElementById("sidebarLogoutBtn");
 
-// Sidebar login button
-const sidebarLoginBtn = document.getElementById("sidebarLoginBtn"); // assume sidebar m login ka button id ye hai
-
-// Check login state on page load
-function checkLoginState() {
-  const isLoggedIn = localStorage.getItem("loggedIn") === "true";
-
-  // Login page par buttons show/hide
-  if (googleBtn && fbBtn) {
-    if (isLoggedIn) {
-      googleBtn.style.display = "none";
-      fbBtn.style.display = "none";
-      if (logoutBtn) logoutBtn.style.display = "block";
-    } else {
-      googleBtn.style.display = "inline-block";
-      fbBtn.style.display = "inline-block";
-      if (logoutBtn) logoutBtn.style.display = "none";
-    }
-  }
-
-  // Sidebar button handling
-  if (sidebarLoginBtn) {
-    sidebarLoginBtn.style.display = isLoggedIn ? "none" : "block";
-  }
-
-  // Logout button in sidebar (if exists)
-  const sidebarLogoutBtn = document.getElementById("sidebarLogoutBtn");
-  if (sidebarLogoutBtn) {
-    sidebarLogoutBtn.style.display = isLoggedIn ? "block" : "none";
-  }
-}
-
-// Redirect to login if not logged in (except on login page)
-function protectPage() {
-  const isLoggedIn = localStorage.getItem("loggedIn") === "true";
-  if (!isLoggedIn && !window.location.pathname.includes("/login/")) {
-    window.location.href = "/home/login/";
-  }
-}
-
-// Event listeners
+// ✅ Google Sign In
 if (googleBtn) {
-  googleBtn.onclick = () => {
-    localStorage.setItem("loggedIn", "true");
-    window.location.href = "/home/";
-  };
+  googleBtn.addEventListener("click", async () => {
+    try {
+      await signInWithPopup(auth, provider);
+      window.location.href = "/home/";
+    } catch (err) {
+      alert("Login failed");
+      console.error(err);
+    }
+  });
 }
 
+// ❌ Facebook disabled (future use)
 if (fbBtn) {
-  fbBtn.onclick = () => {
-    localStorage.setItem("loggedIn", "true");
-    window.location.href = "/home/";
-  };
+  fbBtn.style.display = "none";
 }
 
+// ✅ Logout
 if (logoutBtn) {
-  logoutBtn.onclick = () => {
-    localStorage.removeItem("loggedIn");
+  logoutBtn.addEventListener("click", async () => {
+    await signOut(auth);
     window.location.href = "/home/login/";
-  };
+  });
 }
 
-// Run on page load
-checkLoginState();
-protectPage();
+if (sidebarLogoutBtn) {
+  sidebarLogoutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+    window.location.href = "/home/login/";
+  });
+}
 
+// 🔐 Protect pages + UI control
+onAuthStateChanged(auth, (user) => {
+  const isLoginPage = window.location.pathname.includes("/login");
 
+  if (!user && !isLoginPage) {
+    window.location.href = "/home/login/";
+    return;
+  }
+
+  // UI handling
+  if (user) {
+    if (googleBtn) googleBtn.style.display = "none";
+    if (fbBtn) fbBtn.style.display = "none";
+    if (logoutBtn) logoutBtn.style.display = "block";
+
+    if (sidebarLoginBtn) sidebarLoginBtn.style.display = "none";
+    if (sidebarLogoutBtn) sidebarLogoutBtn.style.display = "block";
+  } else {
+    if (googleBtn) googleBtn.style.display = "block";
+    if (logoutBtn) logoutBtn.style.display = "none";
+
+    if (sidebarLoginBtn) sidebarLoginBtn.style.display = "block";
+    if (sidebarLogoutBtn) sidebarLogoutBtn.style.display = "none";
+  }
+});
